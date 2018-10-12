@@ -4,7 +4,7 @@ import { NavLink, withRouter, Link } from 'react-router-dom';
 import AppNavbar from "../NavBar/AppNavBar";
 import {Site, Card} from "tabler-react";
 import {Button} from "reactstrap";
-class Home extends React.Component<Props, void> {
+class Home extends React.Component {
     constructor(props) {
         super(props);
         this.state = {

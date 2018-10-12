@@ -4,7 +4,7 @@ import {AccountDropdown, Nav, Site, Button} from "tabler-react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const navBarItems = [
-    { value: "Home", to: "/", icon: "home", LinkComponent: withRouter(NavLink) },
+    { value: "Home", to: "/home", icon: "home", LinkComponent: withRouter(NavLink)},
     {
         value: "Bán hàng",
         icon: "shopping-bag",
@@ -12,14 +12,14 @@ const navBarItems = [
             {
                 value: "Đơn hàng",
                 to: "/accounts",
+                icon: 'shopping-cart',
                 LinkComponent: withRouter(NavLink),
             },
-            { value: "Charts", to: "/charts", LinkComponent: withRouter(NavLink) },
             {
-                value: "Pricing Cards",
-                to: "/pricing-cards",
-                LinkComponent: withRouter(NavLink),
-            },
+                value: "Đơn hàng",
+                to: "/accounts/delivery",
+                icon: 'truck',
+                LinkComponent: withRouter(NavLink) },
         ],
     },
     {

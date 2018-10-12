@@ -7,7 +7,7 @@ class Login extends Component {
     defaultUser = {
         username:'',
         password:''
-    }
+    };
 
     constructor(props) {
         super(props);
@@ -47,12 +47,12 @@ class Login extends Component {
         }).then(text => {
             return text.text()
         }).then(function (res) {
-
             localStorage.setItem('token-id', res);
             return fetch('/authentication/get?token-id=' + res);
         }).then(
             res => res.json()
         ).then(res => {
+            // console.log(res);
             if (res.code === '01') {
                 this.props.history.push('/')
             }

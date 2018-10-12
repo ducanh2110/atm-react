@@ -13,16 +13,15 @@ class AccountList extends Component {
 
     componentDidMount() {
         this.setState({isLoading: true});
-
         fetch('/api/accounts',{
             headers: {
                 'token-id': localStorage.getItem('token-id')
             }
         }).then(response => response.json())
             .then(data => this.setState({accounts: data.data, isLoading: false}))
-            .catch(function () {
-                alert("Vui lòng đăng nhâp lại")
-                window.location.href = "/login"
+            .catch( () => {
+                alert("Vui lòng đăng nhâp lại");
+                window.location.href = '/login';
             });
     }
 
@@ -70,8 +69,8 @@ class AccountList extends Component {
         }).then(() => {
             let updatedAccounts = [...this.state.accounts].filter(i => i.id !== id);
             this.setState({accounts : updatedAccounts})
-        }) .catch(function () {
-            alert("Vui lòng đăng nhâp lại")
+        }) .catch( () => {
+            alert("Vui lòng đăng nhâp lại");
             window.location.href = "/login"
         });
     }

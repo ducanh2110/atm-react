@@ -27,7 +27,8 @@ class App extends Component {
         })
     }
     isLoggedIn(Component) {
-        return this.state.loggedIn == false ? (
+        console.log(this.state.loggedIn)
+        return this.state.loggedIn == false && this.state.loggedIn == undefined ? (
             <Redirect to="/login"/>
         ) : (
             <Component/>
