@@ -7,6 +7,7 @@
     "babel-cli": "^6.26.0",
     "bootstrap": "4.1.2",
     "css-loader": "^1.0.0",
+    "firebase": "^5.5.4",
     "react": "^16.4.1",
     "react-cookie": "2.2.0",
     "react-dom": "^16.4.1",
@@ -27,9 +28,6 @@
   "proxy": {
     "/api": {
       "target": "http://localhost:3009"
-    },
-    "/authentication": {
-      "target": "http://localhost:8082"
     }
   },
   "eslintConfig": {

@@ -18,6 +18,7 @@ class Login extends Component {
         this.handleChange = this.handleChange.bind(this);
         this.login = this.login.bind(this);
         this.isLoggedIn = this.isLoggedIn.bind(this);
+        localStorage.removeItem('token-id');
     }
 
 
@@ -48,16 +49,20 @@ class Login extends Component {
             return text.text()
         }).then(function (res) {
             localStorage.setItem('token-id', res);
-            return fetch('/authentication/get?token-id=' + res);
+            return fetch('/api/authentication/profiles', {
+                headers: {
+                    'token-id': res
+                }
+            });
         }).then(
             res => res.json()
         ).then(res => {
-            // console.log(res);
-            if (res.code === '01') {
+            if (res.code == 100) {
+                localStorage.setItem('user', JSON.stringify(res.data));
                 this.props.history.push('/')
             }
 
-            if (res.code !== '01') {
+            if (res.code != 100) {
                 this.setState({
                     'loggedIn': false
                 })
@@ -75,7 +80,7 @@ class Login extends Component {
 
         return (
             <div>
-                <strong style={{'font-size' : '50px'}}>SALE SUPPORT</strong>
+                <strong style={{'fontSize' : '50px'}}>SALE SUPPORT</strong>
                 {this.state.loggedIn == false ? this.isLoggedIn() : ''}
                 <Container className="col-md-5">
                     <div>

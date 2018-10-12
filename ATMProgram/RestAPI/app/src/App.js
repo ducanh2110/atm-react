@@ -8,38 +8,36 @@ import Login from "./Components/Home/Login"
 class App extends Component {
     constructor(props) {
         super(props);
-        this.state = {}
-        this.isLoggedIn = this.isLoggedIn.bind(this)
+        this.state = {};
+        // this.checkAccount = this.checkAccount.call(this);
+        // this.isLoggedIn = this.isLoggedIn.bind(this)
     }
 
-    componentDidMount() {
+    async checkAccount() {
         var self = this;
-        fetch('/authentication/get?token-id=' + localStorage.getItem('token-id')).then(res => res.json()).then(function (res) {
+        await fetch('/authentication/get?token-id=' + localStorage.getItem('token-id')).then(res => res.json()).then(function (res) {
             if (res.code === '01') {
-                self.setState({
-                    'loggedIn' : true
-                })
+                self.setState({'loggedIn' : true})
+                console.log(self.state)
             }
-
             if (res.code !== '01') {
                 self.setState({'loggedIn': false});
+                console.log('abcs')
             }
         })
     }
     isLoggedIn(Component) {
-        console.log(this.state.loggedIn)
-        return this.state.loggedIn == false && this.state.loggedIn == undefined ? (
-            <Redirect to="/login"/>
-        ) : (
-            <Component/>
-        )
+        return localStorage.getItem('token-id') ? <Component/> : <Redirect to="/login"/>
     }
     render() {
+
         return (
             <div className="App">
                 <Router>
                     <Switch>
-                        <Route path='/' exact={true} render={() => this.isLoggedIn(Home)}/>
+                        <Route path='/' exact={true} render={() => {
+                            return this.isLoggedIn(Home)
+                        }}/>
                         <Route path='/accounts' exact={true} render={() => this.isLoggedIn(AccountList)}/>
                         <Route path='/accounts/:id' exact={true} render={() => this.isLoggedIn(AccountEdit)}/>
                         <Route path='/login' exact={true} component={Login} render={() => this.isLoggedIn(Home)}/>

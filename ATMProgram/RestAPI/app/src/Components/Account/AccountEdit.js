@@ -24,7 +24,8 @@ class AccountEdit extends Component {
                     'token-id': localStorage.getItem('token-id')
                 }
             }).catch(function () {
-                alert("Vui lòng đăng nhâp lại")
+                alert("Vui lòng đăng nhâp lại");
+                localStorage.clear();
                 window.location.href = "/login"
             })).json();
             this.setState({info: account.data})
@@ -55,11 +56,9 @@ class AccountEdit extends Component {
                 'token-id' : localStorage.getItem('token-id')
             },
             body: JSON.stringify(info),
-        }).then(this.props.history.push('/accounts')).catch(function () {
-            alert("Vui lòng đăng nhâp lại")
-            window.location.href = "/login"
-        }) .catch(function () {
-            alert("Vui lòng đăng nhâp lại")
+        }).then(this.props.history.push('/accounts')).catch( () => {
+            alert("Vui lòng đăng nhâp lại");
+            localStorage.clear();
             window.location.href = "/login"
         });
 

@@ -21,13 +21,12 @@ class AccountList extends Component {
             .then(data => this.setState({accounts: data.data, isLoading: false}))
             .catch( () => {
                 alert("Vui lòng đăng nhâp lại");
-                window.location.href = '/login';
+                localStorage.clear();
+                window.location.href = "/login"
             });
     }
 
     componentWillUpdate(nextProps, nextState) {
-        console.log(nextProps)
-        console.log(nextState)
     }
 
     /*   componentDidUpdate(prevProps, prevState) {
@@ -71,6 +70,7 @@ class AccountList extends Component {
             this.setState({accounts : updatedAccounts})
         }) .catch( () => {
             alert("Vui lòng đăng nhâp lại");
+            localStorage.clear();
             window.location.href = "/login"
         });
     }

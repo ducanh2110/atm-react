@@ -41,18 +41,6 @@ const navBarItems = [
     }
 ];
 
-const accountDropdownProps = {
-    avatarURL: "./demo/faces/female/25.jpg",
-    name: "Jane Pearson",
-    description: "Administrator",
-    options: [
-        { icon: "user", value: "Profile" },
-        { icon: "settings", value: "Settings" },
-        { isDivider: true },
-        { icon: "log-out", value: "Sign out" },
-    ],
-};
-
 class AppNavbar extends Component{
     constructor(props) {
         super(props);
@@ -80,7 +68,7 @@ class AppNavbar extends Component{
     }
     render() {
         return(<Site>
-            <Site.Header imageURL="./assets/Logo.png" accountDropdown={accountDropdownProps}>
+            <Site.Header imageURL="./assets/Logo.png" >
                 <Link className="header-brand header-brand-img" to="/">Sale Support</Link>
                 <div className="d-flex order-lg-2 ml-auto">
                     <AccountDropdown
